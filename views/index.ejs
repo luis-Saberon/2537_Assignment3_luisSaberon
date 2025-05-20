@@ -1,0 +1,17 @@
+<%- include("templates/header") %>
+
+<h1>Matching game!</h1>
+
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked> Easy (3 pairs)
+  </label>
+  <label class="btn btn-warning">
+    <input type="radio" name="options" id="option2" autocomplete="off"> Medium (5 pairs)
+  </label>
+  <label class="btn btn-danger">
+    <input type="radio" name="options" id="option3" autocomplete="off"> Hard (7 pairs)
+  </label>
+</div>
+
+<%- include("templates/footer") %>
