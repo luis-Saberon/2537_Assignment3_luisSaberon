@@ -2,16 +2,29 @@
 
 <h1>Matching game!</h1>
 
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-primary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> Easy (3 pairs)
-  </label>
-  <label class="btn btn-warning">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Medium (5 pairs)
-  </label>
-  <label class="btn btn-danger">
-    <input type="radio" name="options" id="option3" autocomplete="off"> Hard (7 pairs)
+
+<form method="post" action="/game">
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="difficulty" id="easy" value="3" checked>
+  <label class="form-check-label" for="easy">
+    Easy (3 Pairs)
   </label>
 </div>
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="difficulty" id="medium" value="6">
+  <label class="form-check-label" for="medium">
+    Medium (6 Pairs)
+  </label>
+</div>
+<div class="form-check disabled">
+  <input class="form-check-input" type="radio" name="difficulty" id="hard" value="9">
+  <label class="form-check-label" for="hard">
+    Hard (9 Pairs)
+  </label>
+</div>
+  <button type="submit">Submit</button>
+</form>
 
 <%- include("templates/footer") %>

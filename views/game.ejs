@@ -1,7 +1,7 @@
 <%- include("templates/header") %>
 
 <h1>Matching game!</h1>
-
+<h3 id="score"></h3>
 <div id="game_grid">
   <% for(let i = 0; i < cards.length; i++) { %>
     <%- include("templates/card", {pokemon: cards[i].pokemon, image: cards[i].image}) %>
