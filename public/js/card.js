@@ -2,8 +2,13 @@ var firstCardClicked;
 var secondCardClicked;
 var score = 0;
 var timeout = false
-function update() {
+var timer = 60;
+function updateScore() {
   document.getElementById("score").innerHTML = score;
+}
+
+function updateTimer() {
+  document.getElementById("timer").innerHTML = timer
 }
 
 function checkForWin() {
@@ -13,8 +18,17 @@ function checkForWin() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  update();
+  updateScore();
+  updateTimer()
   //card functions
+  setInterval(() => {
+    timer--;
+    updateTimer()
+    if(timer <= 0) {
+      console.log('loser')
+    }
+
+  },1000)
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", () => {
       const x = Object.values(card.classList);
@@ -28,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.classList.toggle('flip')
             if(firstCardClicked.dataset.pokemon == secondCardClicked.dataset.pokemon) {
               score++;
-              update();
+              updateScore();
               firstCardClicked.classList.add('matched');
               secondCardClicked.classList.add('matched');
               firstCardClicked = null;
