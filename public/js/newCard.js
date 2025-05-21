@@ -6,19 +6,13 @@ function update() {
   document.getElementById("score").innerHTML = score;
 }
 
-function checkForWin() {
-  if(document.querySelectorAll('.card').length == score*2) {
-    console.log("You've won")
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   update();
   //card functions
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", () => {
       const x = Object.values(card.classList);
-      if(!x.includes('matched') && !timeout) { //makes sure that players can't click matched cards, and that they can't click while animations are running to flip back to face down
+      if(!x.includes('matched') && !timeout) {
         if(!firstCardClicked) {
           firstCardClicked = card
           card.classList.toggle('flip')
@@ -33,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
               secondCardClicked.classList.add('matched');
               firstCardClicked = null;
               secondCardClicked = null
-              checkForWin();
             } else {
               timeout = true
               setTimeout(() => {
