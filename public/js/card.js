@@ -2,47 +2,77 @@ var firstCardClicked;
 var secondCardClicked;
 var score = 0;
 var timeout = false
-var timer = 60;
-function updateScore() {
-  document.getElementById("score").innerHTML = score;
+var timer = 600;
+var powerup = false
+var clicks = 0;
+
+function update() {
+  document.getElementById("score").innerHTML = `Score left: ${score}`;
+  document.getElementById('clicks').innerHTML = `Clicks: ${clicks}`;
+  document.getElementById('remaining').innerHTML = `Pairs Left: ${(document.querySelectorAll('.card').length - score*2)/2}`
 }
 
 function updateTimer() {
-  document.getElementById("timer").innerHTML = timer
+  document.getElementById("timer").innerHTML = `Time: ${timer}`
 }
 
 function checkForWin() {
   if(document.querySelectorAll('.card').length == score*2) {
     console.log("You've won")
+    gameOver(true)
+  }
+}
+
+function powerUp() {
+  powerup = true
+  setTimeout(() => {
+    powerup = false
+  }, 5000)
+  document.getElementById('powerup').classList.add('disabled')
+  document.getElementById('powerup').setAttribute('disabled','')
+}
+
+function gameOver(win) {
+  if(win) {
+    document.getElementById('game_board').innerHTML = 'congrats, you won!'
+    window.location.href='/game/winner'
+  } else {
+    document.getElementById('game_board').innerHTML = 'loser'
+    window.location.href='/game/loser'
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  updateScore();
+  update();
   updateTimer()
   //card functions
   setInterval(() => {
-    timer--;
-    updateTimer()
-    if(timer <= 0) {
-      console.log('loser')
+    if(!powerup) {
+      timer--;
+      updateTimer()
+      if(timer <= 0) {
+        gameOver(false)
+      }
     }
-
   },1000)
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", () => {
       const x = Object.values(card.classList);
       if(!x.includes('matched') && !timeout) { //makes sure that players can't click matched cards, and that they can't click while animations are running to flip back to face down
         if(!firstCardClicked) {
+          clicks++
+          update()
           firstCardClicked = card
           card.classList.toggle('flip')
         } else {
           if(card != firstCardClicked) {
+            clicks++
+            update()
             secondCardClicked = card
             card.classList.toggle('flip')
             if(firstCardClicked.dataset.pokemon == secondCardClicked.dataset.pokemon) {
               score++;
-              updateScore();
+              update();
               firstCardClicked.classList.add('matched');
               secondCardClicked.classList.add('matched');
               firstCardClicked = null;
@@ -64,5 +94,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   })
 
+
+  document.getElementById('powerup').addEventListener('click', () => {
+    const x = Object.values(document.getElementById('powerup').classList)
+    if(!x.includes('disabled')) {
+      powerUp()
+    } else {
+      console.log("can't do it!")
+    }
+  })
   //non card functions
 });

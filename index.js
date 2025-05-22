@@ -14,11 +14,25 @@ function randNum(min, max) {
 }
 
 app.get('/', (req,res) => {
-  res.render('index', {scripts: [], styles: []})
+  res.redirect('/mudkip')
 })
 
-app.post('/game', async (req,res) => {
-  console.log(req.body)
+app.get('/:theme', (req,res) => {
+  const theme = req.params.theme
+  let themeNum;
+  if(theme == 'mudkip') {
+    themeNum = 1
+  } else if (theme == "pikachu") {
+    themeNum = 2
+  }
+  res.render('index', {scripts: [], styles: ['index'], theme: themeNum})
+})
+
+app.post('/game', (req,res) => {
+  res.redirect('/game/mudkip')
+})
+
+app.post('/game/:theme', async (req,res) => {
   const pairs = parseInt(req.body.difficulty);
   const pokedex = []
   for(let i = 0; i < pairs; i++) {
@@ -37,7 +51,7 @@ app.post('/game', async (req,res) => {
     pokedex[i] = pokedex[j]
     pokedex[j] = temp
   }
-  res.render('game', {scripts: ['card'], cards: pokedex, styles: ['style']})
+  res.render('game', {scripts: ['card'], cards: pokedex, styles: ['style'], theme: req.params.theme})
 })
 
 app.get('/game', async (req,res) => {
@@ -61,6 +75,14 @@ app.get('/game', async (req,res) => {
     pokedex[j] = temp
   }
   res.render('game', {scripts: ['card'], cards: pokedex, styles: ['style']})
+})
+
+app.get('/game/winner', (req,res) => {
+  res.render('gameover', {displayMessage: "Congrats, you won!", scripts: [], styles: []})
+})
+
+app.get('/game/loser', (req,res) => {
+  res.render('gameover', {displayMessage: "Better luck next time!", scripts: [], styles: []})
 })
 
 

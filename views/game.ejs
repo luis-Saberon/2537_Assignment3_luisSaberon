@@ -1,13 +1,22 @@
 <%- include("templates/header") %>
 
-<h1>Matching game!</h1>
-<h3 id="score"></h3>
-<h3 id="timer"></h3>
-<div id="game_grid">
-  <% for(let i = 0; i < cards.length; i++) { %>
-    <%- include("templates/card", {pokemon: cards[i].pokemon, image: cards[i].image}) %>
-  <% } %>
-</div>
+<div id="body" class="p<%=theme %>">
 
+  <div id="game_board">
+    
+    <h1 class="t<%=theme %>">Matching game!</h1>
+    <h3 id="score" class="t<%=theme %>"></h3>
+    <h3 id="timer" class="t<%=theme %>"></h3>
+    <h3 id="clicks" class="t<%=theme %>"></h3>
+    <h3 id="remaining" class="t<%=theme %>"></h3>
+    <div id="game_grid">
+      <% for(let i = 0; i < cards.length; i++) { %>
+        <%- include("templates/card", {pokemon: cards[i].pokemon, image: cards[i].image}) %>
+        <% } %>
+      </div>
+      
+      <button id="powerup" class="btn btn-primary s<%=theme %>">1 Time Powerup</button>
+    </div>
+</div>
 
 <%- include("templates/footer") %>

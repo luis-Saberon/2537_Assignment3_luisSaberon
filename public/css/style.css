@@ -1,11 +1,83 @@
-body {
-  margin: 0px;
+body, html {
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  /* background-color: rgb(87,160,205); */
 }
 
+#body {
+  height: 100%;
+  width: 100%;
+}
+
+#game_board {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto 10% auto;
+}
+
+.p1 {
+  background-color: rgb(87,160,205);
+}
+
+.s1 {
+  background-color: rgb(213,175,137);
+  border: 1px rgb(213,175,137) solid;
+  color: rgb(4,4,4);
+}
+
+.s1:disabled {
+  background-color: rgb(213,175,137);
+  border: 1px rgb(213,175,137) solid;
+  color: rgb(4,4,4);
+}
+
+.s1:hover {
+    background-color: rgb(4,4,4);
+  border: 1px rgb(4,4,4) solid;
+  color: rgb(213,175,137);
+}
+
+.t1 {
+  color: rgb(4,4,4);
+  /* background-color: rgb(4,4,4) */
+}
+
+.p2{
+ background-color: rgb(243, 207, 63);
+}
+
+.s2 {
+  background-color: rgb(38, 28, 20);
+  border: 1px rgb(213,175,137) solid;
+  color: rgb(160, 78, 6);
+}
+
+.s2:disabled {
+  background-color: rgb(38, 28, 20);
+  border: 1px rgb(38, 28, 20) solid;
+  color: rgb(160, 78, 6);
+}
+
+.s2:hover {
+  background-color: rgb(38, 28, 20);
+  border: 1px rgb(38, 28, 20)solid;
+  color: rgb(160, 78, 6);
+}
+
+.t2 {
+  color: rgb(160, 78, 6)
+}
+
+h3, h1 {
+  grid-column-start: 2;
+  justify-self: center;
+}
 #game_grid {
-  border: 2px tomato solid;
+  grid-column-start: 2;
+  border: 2px BLACK solid;
   width: 600px;
-  height: 400px;
+  height: 600px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -20,14 +92,17 @@ body {
   transform-style: preserve-3d;
 }
 
-
-img {
-  width: 100%
+.btn {
+  grid-row-start: 6;
+  grid-column-start: 2;
+  width: 600px;
+  justify-self: center;
 }
 
-/* .card:hover {
-  transform: rotateY(180deg);
-} */
+img {
+  width: 100%;
+  height: 100%;
+}
 
 .flip {
   transform: rotateY(180deg);
@@ -44,18 +119,3 @@ img {
 .back_face {
   transform: rotateY(180deg);
 }
-/* .front_face,
-.back_face {
-  position: absolute;
-  backface-visibility: hidden;
-}
-
-
-.flip {
-  transform: rotateY(180deg);
-}
-
-
-.front_face {
-  transform: rotateY(180deg);
-} */

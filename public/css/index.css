@@ -1,0 +1,83 @@
+body, html {
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+#body {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto 10% 10%  auto
+}
+
+#body h1 {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  justify-self: center;
+}
+
+
+#form {
+  justify-self: center;
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+
+.p1 {
+  background-color: rgb(87,160,205);
+}
+
+.s1nonButton {
+  color: rgb(213,175,137);
+}
+
+.s1 {
+  background-color: rgb(213,175,137);
+  border: 1px rgb(213,175,137) solid;
+  color: rgb(4,4,4);
+}
+
+.s1:disabled {
+  background-color: rgb(213,175,137);
+  border: 1px rgb(213,175,137) solid;
+  color: rgb(4,4,4);
+}
+
+.s1:hover {
+  background-color: rgb(4,4,4);
+  border: 1px rgb(4,4,4) solid;
+  color: rgb(213,175,137);
+}
+
+.t1 {
+  color: rgb(4,4,4);
+  /* background-color: rgb(4,4,4) */
+}
+
+.p2{
+ background-color: rgb(243, 207, 63);
+}
+
+.s2 {
+  background-color: rgb(38, 28, 20);
+  border: 1px rgb(213,175,137) solid;
+  color: rgb(160, 78, 6);
+}
+
+.s2:disabled {
+  background-color: rgb(38, 28, 20);
+  border: 1px rgb(38, 28, 20) solid;
+  color: rgb(160, 78, 6);
+}
+
+.s:hover {
+    background-color: rgb(38, 28, 20);
+  border: 1px rgb(38, 28, 20)solid;
+  color: rgb(160, 78, 6);
+}
+
+.t2 {
+  color: rgb(160, 78, 6)
+}
