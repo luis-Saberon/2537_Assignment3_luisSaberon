@@ -34,13 +34,13 @@ function powerUp() {
 
 function gameOver(win) {
   const x = Object.values(document.getElementById('holder').classList)
-  const send = `/game/${x[0]}/${x[1]}`
-  console.log(send)
+  console.log(`/${x[1]}`)
   if(win) {
     if (confirm("You won, play again?")) {
       window.location.href=`/game/${x[0]}/${x[1]}`
     } else {
-      window.location.href='/'
+      
+      window.location.href=`/${x[0]}`
     }
     // document.getElementById('game_board').innerHTML = 'congrats, you won!'
     // window.location.href='/game/winner'
@@ -48,7 +48,7 @@ function gameOver(win) {
     if (confirm("You lost, play again?")) {
       window.location.href=`/game/${x[0]}/${x[1]}`
     } else {
-      window.location.href='/'
+      window.location.href=`${x[0]}`
     }
   }
 }

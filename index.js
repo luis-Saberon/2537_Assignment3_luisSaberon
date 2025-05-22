@@ -20,12 +20,12 @@ app.get('/', (req,res) => {
 app.get('/:theme', (req,res) => {
   const theme = req.params.theme
   let themeNum;
-  if(theme == 'mudkip') {
+  if(theme == 'mudkip' || parseInt(theme) == 1) {
     themeNum = 1
-  } else if(theme =='pikachu'){
+  } else if(theme =='pikachu' || parseInt(theme) == 2){
     themeNum = 2
   } else {
-    res.redirect('/')
+     return res.redirect('/')
   }
   res.render('index', {scripts: [], styles: ['index'], theme: themeNum})
 })
