@@ -34,10 +34,11 @@ function powerUp() {
 
 function gameOver(win) {
   const x = Object.values(document.getElementById('holder').classList)
+  timer = 99999;
   console.log(`/game/${x[0]}/${x[1]}`)
   if(win) {
     if (confirm("You won, play again?")) {
-      window.location.href=`game/${x[0]}/${x[1]}`
+      window.location.href=`/game/${x[0]}/${x[1]}`
     } else { 
       window.location.href=`/${x[0]}`
     }
