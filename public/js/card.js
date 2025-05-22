@@ -2,7 +2,7 @@ var firstCardClicked;
 var secondCardClicked;
 var score = 0;
 var timeout = false
-var timer = 600;
+var timer = 30;
 var powerup = false
 var clicks = 0;
 
@@ -33,12 +33,23 @@ function powerUp() {
 }
 
 function gameOver(win) {
+  const x = Object.values(document.getElementById('holder').classList)
+  const send = `/game/${x[0]}/${x[1]}`
+  console.log(send)
   if(win) {
-    document.getElementById('game_board').innerHTML = 'congrats, you won!'
-    window.location.href='/game/winner'
+    if (confirm("You won, play again?")) {
+      window.location.href=`/game/${x[0]}/${x[1]}`
+    } else {
+      window.location.href='/'
+    }
+    // document.getElementById('game_board').innerHTML = 'congrats, you won!'
+    // window.location.href='/game/winner'
   } else {
-    document.getElementById('game_board').innerHTML = 'loser'
-    window.location.href='/game/loser'
+    if (confirm("You lost, play again?")) {
+      window.location.href=`/game/${x[0]}/${x[1]}`
+    } else {
+      window.location.href='/'
+    }
   }
 }
 
@@ -73,11 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
             if(firstCardClicked.dataset.pokemon == secondCardClicked.dataset.pokemon) {
               score++;
               update();
+              timer += 10;
               firstCardClicked.classList.add('matched');
               secondCardClicked.classList.add('matched');
               firstCardClicked = null;
               secondCardClicked = null
-              checkForWin();
+              setTimeout(() => {
+                checkForWin();
+              }, 1000)
             } else {
               timeout = true
               setTimeout(() => {
