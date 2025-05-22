@@ -84,7 +84,7 @@ app.get('/:theme', (req,res) => {
   } else if(theme =='pikachu' || parseInt(theme) == 2){
     themeNum = 2
   } else {
-     return res.redirect('/')
+    //  return res.redirect('/')
   }
   res.render('index', {scripts: [], styles: ['index'], theme: themeNum})
 })
