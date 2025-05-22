@@ -2,12 +2,12 @@ var firstCardClicked;
 var secondCardClicked;
 var score = 0;
 var timeout = false
-var timer = 30;
+var timer = 1;
 var powerup = false
 var clicks = 0;
 
 function update() {
-  document.getElementById("score").innerHTML = `Score left: ${score}`;
+  document.getElementById("score").innerHTML = `Score: ${score}`;
   document.getElementById('clicks').innerHTML = `Clicks: ${clicks}`;
   document.getElementById('remaining').innerHTML = `Pairs Left: ${(document.querySelectorAll('.card').length - score*2)/2}`
 }
@@ -34,21 +34,18 @@ function powerUp() {
 
 function gameOver(win) {
   const x = Object.values(document.getElementById('holder').classList)
-  console.log(`/${x[1]}`)
+  console.log(`/game/${x[0]}/${x[1]}`)
   if(win) {
     if (confirm("You won, play again?")) {
       window.location.href=`/game/${x[0]}/${x[1]}`
-    } else {
-      
+    } else { 
       window.location.href=`/${x[0]}`
     }
-    // document.getElementById('game_board').innerHTML = 'congrats, you won!'
-    // window.location.href='/game/winner'
   } else {
     if (confirm("You lost, play again?")) {
       window.location.href=`/game/${x[0]}/${x[1]}`
     } else {
-      window.location.href=`${x[0]}`
+      window.location.href=`/${x[0]}`
     }
   }
 }
