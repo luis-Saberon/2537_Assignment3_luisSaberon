@@ -17,18 +17,6 @@ app.get('/', (req,res) => {
   res.render('index', {scripts: [], styles: ['index'], theme: 1})
 })
 
-app.get('/:theme', (req,res) => {
-  const theme = req.params.theme
-  let themeNum;
-  if(theme == 'mudkip' || parseInt(theme) == 1) {
-    themeNum = 1
-  } else if(theme =='pikachu' || parseInt(theme) == 2){
-    themeNum = 2
-  } else {
-     return res.redirect('/')
-  }
-  res.render('index', {scripts: [], styles: ['index'], theme: themeNum})
-})
 
 app.post('/game', (req,res) => {
   res.redirect('/game/mudkip')
@@ -88,6 +76,18 @@ app.get('/game/:theme/:pairs', async (req,res) => {
   res.render('game', {scripts: ['card'], cards: pokedex, styles: ['style'], theme: req.params.theme})
 })
 
+app.get('/:theme', (req,res) => {
+  const theme = req.params.theme
+  let themeNum;
+  if(theme == 'mudkip' || parseInt(theme) == 1) {
+    themeNum = 1
+  } else if(theme =='pikachu' || parseInt(theme) == 2){
+    themeNum = 2
+  } else {
+     return res.redirect('/')
+  }
+  res.render('index', {scripts: [], styles: ['index'], theme: themeNum})
+})
 // app.get('*', (req,res) => {
 //   res.redirect('/')
 // })
