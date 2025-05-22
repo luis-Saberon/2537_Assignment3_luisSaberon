@@ -2,7 +2,7 @@ var firstCardClicked;
 var secondCardClicked;
 var score = 0;
 var timeout = false
-var timer = 1;
+var timer = 30;
 var powerup = false
 var clicks = 0;
 
