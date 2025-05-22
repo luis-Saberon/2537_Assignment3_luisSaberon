@@ -2,7 +2,7 @@ var firstCardClicked;
 var secondCardClicked;
 var score = 0;
 var timeout = false
-var timer = 30;
+var timer = 1;
 var powerup = false
 var clicks = 0;
 
@@ -37,13 +37,13 @@ function gameOver(win) {
   console.log(`/game/${x[0]}/${x[1]}`)
   if(win) {
     if (confirm("You won, play again?")) {
-      window.location.href=`/game/${x[0]}/${x[1]}`
+      window.location.href=`${x[0]}/${x[1]}`
     } else { 
       window.location.href=`/${x[0]}`
     }
   } else {
     if (confirm("You lost, play again?")) {
-      window.location.href=`/game/${x[0]}/${x[1]}`
+      window.location.href=`${x[0]}/${x[1]}`
     } else {
       window.location.href=`/${x[0]}`
     }
