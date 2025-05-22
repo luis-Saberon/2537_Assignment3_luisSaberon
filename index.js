@@ -14,7 +14,7 @@ function randNum(min, max) {
 }
 
 app.get('/', (req,res) => {
-  res.redirect('/mudkip')
+  res.render('index', {scripts: [], styles: ['index'], theme: 1})
 })
 
 app.get('/:theme', (req,res) => {
